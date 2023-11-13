@@ -32,7 +32,7 @@ public class Grammar {
     }
 
     public static Grammar parse(String str) {
-        return new Grammar(Arrays.stream(str.split("\\R")).filter(Predicate.not(String::isBlank)).map(s -> {
+        return new Grammar(str.lines().filter(Predicate.not(String::isBlank)).map(s -> {
             var parts = s.trim().split("\\s+");
             return new Production(parts[0], Arrays.copyOfRange(parts, 1, parts.length));
         }).toArray(Production[]::new));
